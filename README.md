@@ -57,20 +57,6 @@ uploaded files:
 
 ## frontend assets
 
-style/script source files are read from:
-
-```text
-./assets/styles
-./assets/scripts
-```
-
-after build, these minified files are generated automatically:
-
-```text
-./assets/tinyfinder.min.css
-./assets/tinyfinder.min.js
-```
-
 to rebuild assets:
 
 ```bash
