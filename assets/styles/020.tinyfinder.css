@@ -1,0 +1,856 @@
+.TF_dialog { 
+	font-family: Open Sans;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.TF_dialog * { 
+	font-weight: normal;
+}
+
+.TF_dialog a {
+	cursor: pointer;
+}
+
+.TF_dialog [class^="fa-"],
+.TF_dialog [class*=" fa-"] {
+  display: inline-block;
+  font-size: 14px!important;
+  *margin-right: .3em;
+  line-height: 14px;
+}
+
+.TF_dialog li [class^="fa-"],
+.TF_dialog li [class*=" fa-"] {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
+}
+.TF_dialog li [class^="fa-"].icon-large,
+.TF_dialog li [class*=" fa-"].icon-large {
+  /* increased font size for icon-large */
+  width: 1.5625em;
+}
+
+.TF_dialog .portlet  {
+  clear: both;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  padding: 0px;
+}
+
+.TF_dialog .portlet > .portlet-title {  
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.TF_dialog .portlet > .portlet-title:after,
+.TF_dialog .portlet > .portlet-title:before {
+  content: "";
+  display: table;
+  line-height: 0;
+}
+
+.TF_dialog .portlet > .portlet-title:after {
+  clear: both;
+}
+
+.TF_dialog .portlet > .portlet-title > .caption {
+  float: left;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 8px; 
+}
+
+.TF_dialog .portlet > .portlet-title > .caption > i {
+  float: left;
+  margin-top: 4px;
+  display: inline-block !important;
+  font-size: 13px;
+  margin-right: 5px;
+  color: #666;
+}
+
+.TF_dialog .portlet.blue > .portlet-title > .caption,
+.TF_dialog .portlet.purple > .portlet-title > .caption {
+  color: #fff;
+}
+
+.TF_dialog .portlet.box.blue > .portlet-title > .caption > i, 
+.TF_dialog .portlet.box.purple > .portlet-title > .caption > i {
+  color: #fff;
+}
+
+.TF_dialog .sortable .TF_dialog .portlet > .portlet-title {
+  cursor: move;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools,
+.TF_dialog .portlet > .portlet-title > .actions
+ {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-top: 6px;
+  float: right;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools > a {
+  display: inline-block;
+  height: 16px;
+  margin-left:5px;
+}
+
+.TF_dialog .portlet > .portlet-title > .actions > .dropdown-menu i {
+  color: #000 !important;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools > a.remove {
+  margin-bottom: 2px;
+  background-image:url(images/portlet-remove-icon.png);
+  background-repeat: no-repeat;
+  width: 11px;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools > a.config {
+  margin-bottom: 2px;
+  background-image:url(images/portlet-config-icon.png);
+  background-repeat: no-repeat;
+  width: 12px;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools > a.reload {
+  margin-bottom: 2px;
+  background-image:url(images/portlet-reload-icon.png);
+  width: 13px;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools > a.expand {
+  margin-bottom: 2px;
+  background-image:url(images/portlet-expand-icon.png);
+  width: 14px;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools > a.collapse {
+  margin-bottom: 2px;
+  background-image:url(images/portlet-collapse-icon.png);
+  width: 14px;
+}
+
+.TF_dialog .portlet > .portlet-title > .tools > a:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  opacity:.6;  
+  filter:'alpha(opacity=60)';
+}
+
+.TF_dialog .portlet > .portlet-title > .actions > .btn-group {
+  margin-top: -12px;
+}
+
+.TF_dialog .portlet > .portlet-title > .actions > .btn {
+  padding: 4px 10px;
+  margin-top: -14px;
+}
+
+.TF_dialog .portlet > .portlet-title > .actions > .btn-group > .btn {
+  padding: 4px 10px;
+  margin-top: -1px;
+}
+
+.TF_dialog .portlet > .portlet-title > .actions > .btn.btn-sm {
+  padding: 3px 8px;
+  margin-top: -14px;
+}
+
+.TF_dialog .portlet > .portlet-title > .actions > .btn-group > .btn-sm {
+  padding: 3px 8px;
+  margin-top: -1px;
+}
+
+.TF_dialog .portlet > .portlet-title > .pagination.pagination-sm {
+  float: right !important;
+  display: inline-block !important;
+  margin: 0px;
+  margin-top: -4px;
+}
+
+.TF_dialog .portlet > .portlet-body {
+  clear: both;  
+  padding: 0;
+}
+
+.TF_dialog .portlet > .portlet-body.light-blue, .portlet.light-blue {
+  background-color: #bfd5fa  !important;
+}
+
+.TF_dialog .portlet > .portlet-body.blue, .portlet.blue {
+  background-color: #4b8df8 !important;
+}
+
+.TF_dialog .portlet > .portlet-body.red, .portlet.red {
+  background-color: #e02222 !important;
+}
+
+.TF_dialog .portlet > .portlet-body.yellow, .portlet.yellow {
+  background-color: #ffb848 !important;
+}
+
+.TF_dialog .portlet > .portlet-body.green, .portlet.green {
+  background-color: #35aa47 !important;
+}
+
+.TF_dialog .portlet > .portlet-body.purple, .portlet.purple {
+  background-color: #852b99 !important;
+}
+
+.TF_dialog .portlet > .portlet-body.light-grey, .portlet.light-grey {
+  background-color: #fafafa !important;
+}
+
+.TF_dialog .portlet > .portlet-body.grey, .portlet.grey {
+  background-color: #555555 !important;
+}
+
+/*** Box portlet ***/
+
+.TF_dialog .portlet.box {
+   padding:0px !important
+}
+
+.TF_dialog .portlet.box > .portlet-title {  
+   padding:8px 10px 2px 10px;
+   border-bottom: 1px solid #eee;
+   color: #fff !important;
+}
+
+.TF_dialog .portlet.box > .portlet-title > .actions > .btn > i {
+  color: #fff !important;
+}
+
+.TF_dialog .portlet.box > .portlet-title > .tools {
+  margin-top: 3px;
+}
+
+.TF_dialog .portlet.box > .portlet-title > .tools > a.remove, 
+.portlet.solid > .portlet-title > .tools > a.remove {
+  background-image:url(images/portlet-remove-icon-white.png);
+}
+
+.TF_dialog .portlet.box > .portlet-title > .tools > a.config,
+.portlet.solid > .portlet-title > .tools > a.config {
+  background-image:url(images/portlet-config-icon-white.png);
+}
+
+.TF_dialog .portlet.box > .portlet-title > .tools > a.reload,
+.portlet.solid > .portlet-title > .tools > a.reload {
+  background-image:url(images/portlet-reload-icon-white.png);
+}
+
+.TF_dialog .portlet.box > .portlet-title > .tools > a.expand,
+.portlet.solid > .portlet-title > .tools > a.expand {
+  background-image:url(images/portlet-expand-icon-white.png);
+}
+
+.TF_dialog .portlet.box > .portlet-title > .tools > a.collapse,
+.portlet.solid > .portlet-title > .tools > a.collapse {
+  background-image:url(images/portlet-collapse-icon-white.png);
+}
+
+/* portlet buttons */
+.TF_dialog .portlet.box > .portlet-body {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.TF_dialog .portlet.box > .portlet-title {  
+  margin-bottom: 0px;
+}
+
+.TF_dialog .portlet.box.blue > .portlet-title {
+  background-color: #4b8df8;
+} 
+
+.TF_dialog .portlet.box.blue {  
+   border: 1px solid #b4cef8;
+   border-top: 0;
+}
+
+.TF_dialog .portlet.box.red > .portlet-title {
+  background-color: #e02222;
+} 
+
+.TF_dialog .portlet.box.red {  
+   border: 1px solid #ef8476;
+   border-top: 0;
+}
+
+.TF_dialog .portlet.box.yellow > .portlet-title {
+  background-color: #ffb848;
+} 
+
+.TF_dialog .portlet.box.yellow {  
+   border: 1px solid #fccb7e;
+   border-top: 0;
+}
+
+.TF_dialog .portlet.box.green > .portlet-title {
+  background-color: #35aa47;
+} 
+
+.TF_dialog .portlet.box.green {  
+   border: 1px solid #77e588;
+   border-top: 0;
+}
+
+.TF_dialog .portlet.box.purple > .portlet-title {
+  background-color: #852b99;
+} 
+
+.TF_dialog .portlet.box.purple {  
+   border: 1px solid #af5cc1;
+   border-top: 0;
+}
+
+.TF_dialog .portlet.box.grey > .portlet-title {
+  background-color: #555555;
+} 
+
+.TF_dialog .portlet.box.grey {  
+   border: 1px solid #9d9c9c;
+   border-top: 0;
+}
+
+.TF_dialog .portlet.box.light-grey > .portlet-title {
+  background-color: #aaa;
+} 
+
+.TF_dialog .portlet.box.light-grey {  
+   border: 1px solid #bbb;
+   border-top: 0;
+}
+
+/*** portlet tabs ***/
+.TF_dialog .portlet-tabs > .nav-tabs {
+    position: relative;
+    top: -41px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > li {
+    float: right;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs {
+    border-bottom: none;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > li > a {
+	color: #fff;
+	padding-top: 8px;
+	padding-bottom: 10px;
+	line-height: 16px;
+	margin-top: 6px;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-left: 0;    
+	border-right: 0;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;   
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > li:last-child > a {
+  border-right:0;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > li {
+  margin-left: 1px;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > li.active {
+  color: #333;
+  border-top-color: transparent;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > li.active > a {
+  margin-bottom: 0px;
+  border-bottom: 0;
+  margin-left: 0px;
+  margin-right: 0px;
+  border-left: 0;    
+  border-right: 0;
+  border-top-color:transparent !important;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > li > a:hover {   
+  color: #333;
+  margin-bottom: 0;
+  border-bottom-color: transparent;
+  margin-left: 0;
+  margin-right: 0;
+  border-left: 0;    
+  border-right: 0;
+  border-top-color:transparent;
+  background-color: #fff;
+}  
+
+.TF_dialog .portlet-tabs > .nav-tabs > .active > a  {
+  color: #555555;
+  cursor: default;
+  background-color: #fff;
+}
+
+.TF_dialog .portlet-tabs > .nav-tabs > .active > a:hover {
+  background-color: #fff !important;
+}
+
+.TF_dialog .portlet-tabs > .tab-content {
+  padding: 10px !important;
+  margin: 0px;
+  margin-top: -50px !important;
+}
+
+.TF_dialog .portlet.tabbable .portlet-body {
+  padding: 0px;
+}
+
+.TF_dialog .form-body {
+  padding: 10px;
+}
+
+.TF_dialog .form {
+  padding: 0 !important;
+}
+
+.TF_dialog .form-actions {
+  padding: 20px 10px;
+  margin-top: 10px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+  *zoom: 1;
+}
+
+.TF_dialog .form-actions.nobg {
+  background-color: transparent;
+}
+
+.TF_dialog .form-actions.top {
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-top: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.TF_dialog .form-actions.fluid {
+  padding: 20px 0;
+}
+
+.TF_dialog .form-actions.fluid > [class^="col-"] {
+  padding-left: 13px;
+}
+
+.TF_dialog .form-actions:before,
+.TF_dialog .form-actions:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.TF_dialog .form-actions:after {
+  clear: both;
+}
+
+/* left, right aligned form actions */
+.TF_dialog .form-actions.right {
+  padding-left: 0;
+  padding-right: 10px;
+  text-align: right;
+}
+
+.TF_dialog .form-actions.left {
+  padding-left: 10px;
+  padding-right: 0;
+  text-align: left;
+}
+
+/*  default button */
+.TF_dialog .btn.default {  
+  color: #333333;
+  text-shadow: none;  
+  background-color: #e5e5e5;
+}
+.TF_dialog .btn.default:hover, 
+.TF_dialog .btn.default:focus, 
+.TF_dialog .btn.default:active, 
+.TF_dialog .btn.default.active,
+.TF_dialog .btn.default[disabled], 
+.TF_dialog .btn.default.disabled {    
+  color: #333333;
+  background-color: #d8d8d8 !important;
+  outline: none !important;
+}
+
+/*  green button */
+.TF_dialog .btn.green {
+  color: white;
+  text-shadow: none;	 
+  background-color: #35aa47;
+}
+.TF_dialog .btn.green:hover, 
+.TF_dialog .btn.green:focus, 
+.TF_dialog .btn.green:active, 
+.TF_dialog .btn.green.active,
+.TF_dialog .btn.green.disabled, 
+.TF_dialog .btn.green[disabled]{ 
+  background-color: #1d943b !important;
+  color: #fff !important;
+  outline: none !important;
+}
+
+.TF_dialog .input-group.color .input-group-btn i { height: 15.5px; }
+
+.TF_dialog .btn { padding: 5.5px 14.5px; font-size: 11px; }
+.TF_dialog .btn > i { font-size: 13px; }
+.TF_dialog .dropdown-menu { font-size: 11px; }
+.TF_dialog .dropdown-menu li a { line-height: 15px; }
+.TF_dialog .dropdown-submenu > a:after { font-size: 12px; }
+.TF_dialog label { font-size: 11px; }
+
+.TF_dialog .form-control:-moz-placeholder {
+  color: #999999;
+}
+.TF_dialog .form-control::-moz-placeholder {
+  color: #999999;
+}
+.TF_dialog .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+.TF_dialog .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+.TF_dialog .form-control {  
+  font-size: 11px!important;
+  height: 27.9px;
+  padding: 5px 6px;
+  font-weight: normal;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.TF_dialog .form-control:focus {
+  border-color: #999999;
+}
+
+.TF_dialog .form-control[disabled] {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+}
+
+.TF_dialog .form-control[readonly] {
+  cursor: not-allowed;
+  background-color: #F9F9F9;
+}
+
+.TF_dialog .portlet > .portlet-title > .caption { 
+	font-size: 15px;
+	margin: 0 0 5px;
+}
+.TF_dialog .portlet > .portlet-title > .caption > .btn-group {
+
+}
+.TF_dialog .portlet > .portlet-title > .caption > .btn {
+	padding: 4px 8px;
+}
+.TF_dialog .portlet > .portlet-title > .caption > .btn-group > .btn {
+	padding: 4px 8px;
+}
+.TF_dialog .portlet > .portlet-title > .caption > .btn.btn-sm {
+	padding: 3px 8px;
+}
+.TF_dialog .portlet > .portlet-title > .caption > .btn-group > .btn-sm {
+	padding: 3px 8px;
+}
+
+.TF_dialog .control-label {
+	padding-top:5px!important;
+	padding-right:0;
+}
+
+.TF_dialog label {
+	font-weight:400;
+	font-size:11px;
+}
+
+.TF_dialog fieldset legend {
+	font-size:18px;
+}
+
+.TF_dialog div.alert li {
+	list-style:disc;
+	margin-left:33px;
+}
+
+.TF_dialog div.alert span,div.alert li {
+	font-size:12px;
+}
+
+.TF_dialog div.alert[hiddenalert='true'] {
+	display:none!important;
+}
+
+.TF_dialog .btn {
+    font-size: 11px;
+    padding: 5.5px 14.5px;
+}
+.TF_dialog .btn > i {
+    font-size: 13px!important;
+}
+
+.TF_cropbox {
+	visibility: hidden
+}
+
+.TF_uploadingfile {
+	padding:0!important;
+}
+
+.TF_filemanagergroup .uploadedimg {
+	max-width:250px;
+	max-height:250px;
+}
+
+.TF_filemanagergroup .input-group-btn a {
+	margin-left:1px!important;
+}
+
+#TF_fm_preview_container {
+	position:relative;
+}
+
+#TF_fm_preview_container .TF_fm_preview {
+	max-width:350px!important;
+	max-height:260px!important;
+}
+
+#TF_fm_preview_container span.property {
+	background:#000;
+	color:#fff;
+	font-size:11px;
+	opacity:0.7;
+	position:absolute;
+	white-space:nowrap;
+	margin:0;
+	padding:3px 9px;
+}
+
+#TF_fm_preview_container span.ext {
+    background: none;
+    color: #fff;
+    font-family: Trebuchet MS;
+    font-size: 45px;
+    margin: 0;
+    position: absolute;
+    right: 45px;
+    top: 40px;
+	font-weight: 400;
+}
+
+.ext_popover {
+    background: none;
+    color: #fff;
+    font-family: Trebuchet MS;
+    margin: 0;
+    position: absolute;
+    right: 23px;
+    bottom: 7px;
+	font-weight: 400;
+}
+
+.TF_filemanagerbox .form-body {
+	padding:10px 10px 0;
+}
+
+.TF_filemanagerbox .form-actions {
+	margin-top:10px;
+}
+
+.TF_filemanagerbox #TF_filetitle {
+	min-width:335px;
+	border-radius:0;
+	margin-bottom: 0.5px;
+}
+
+.TF_filemanagerbox .tooltip i {
+	color: #3e7985!important;
+}
+
+.TF_searchresults {
+	height:250px;
+	overflow:hidden;
+	position:static;
+	width:335px;
+}
+
+.TF_searchresults .tc-container {
+	min-height:250px;
+	max-height:240px;
+}
+
+.TF_searchresults .tc-container li {
+	background:#fff;
+	width:100%;
+	overflow:hidden;
+	position:relative;
+	border-bottom:1px solid #e1e1e1;
+}
+
+.TF_searchresults .tc-container li:nth-child(odd) {
+	background:#f9f9f9;
+}
+
+.TF_searchresults .tc-container span.filetitle,.TF_searchresults .tc-container span.resize {
+	width:202px;
+	left:5px;
+	top:0;
+	overflow:hidden;
+	position:absolute;
+}
+
+.TF_searchresults .tc-container span.resize input.resizeinput {
+	width:30px;
+	height:16px;
+	margin-top:2px;
+	line-height:16px;
+}
+
+.TF_searchresults .tc-container span.transicons {
+	width:100px;
+	right:2px;
+	top:0;
+	text-align:right;
+	position:absolute;
+}
+
+.TF_searchresults .tc-container span.transicons i:last-child {
+	margin-right:2px;
+}
+
+.TF_searchresults .tc-container li[type='file'] span.filetitle {
+	width:202px;
+}
+
+.TF_searchresults .tc-container li[type='file'] span.transicons {
+	width:100px;
+}
+
+.TF_searchresults .tc-container i {
+	color:#3E7985;
+}
+
+.TF_imgedit {
+	position: relative;
+	width: 128px;
+	height: 128px;
+}
+
+.TF_imgedit input {
+	cursor: pointer;
+	opacity: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+}
+.TF_imgedit img {
+	left: 0;
+	top: 0;
+	-moz-box-shadow:0.5px 0.5px 2.5px #bbb;
+	-webkit-box-shadow:0.5px 0.5px 2.5px #bbb;
+	box-shadow:0.5px 0.5px 2.5px #bbb;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+.TF_imgedit span {
+	background: #000;
+	color: #fff;
+	font-size: 11px;
+	margin: 0;
+	opacity: 0.7;
+	padding: 3px 9px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: default;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px
+}
+
+.TF-img-opt, .TF-file-opt {
+	display: none;
+}
+
+.TF_form input[type='checkbox'] {
+	margin-top: 7px
+}
+
+.TF_check4update {
+	line-height: 20px
+}
+
+.TF_drag_here {
+	border: 1px dashed #0087f7;
+	border-radius: 5px;
+	padding: 50px;
+	width: 100%;
+	background: #f5f5f5;
+	padding: 50px;
+	cursor: pointer;
+	font-size: 12px;
+	white-space: nowrap
+}
+
+.TF_drag_here.drag {
+	background: #ffffcc!important;
+	border-style: solid;
+	opacity: 0.75;
+}
+
+.TF_searchresults > ul.list_drag {
+	opacity : 0.75;
+	border : 1px dotted #333;
+	border-top : none;
+}
+
+.TF_drag_here.archive {
+	padding: 7px;
+	border: none;
+	font-size: 11px;
+	background: #fff;
+}
+
+#TF_item_progress, #TF_progress {
+	width: 100%;
+	font-size: 11px;
+	display: none;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	background: #ccc;
+}
+
+.progress .progress-bar span {
+    position: absolute;
+    display: block;
+    width: 100%;
+	/*font-weight: 600!important;*/
+}

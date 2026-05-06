@@ -1,0 +1,63 @@
+.TF_filemanagerbox > .modal-dialog {
+	width:775px;
+}
+
+.TF_filemanagerbox > .modal-dialog > .modal-content > .modal-body {
+	padding-bottom:0;
+}
+
+.modal:not(.bootbox) > .modal-dialog {
+  transform: translate(0, 50%) !important;
+  -ms-transform: translate(0, 50%) !important;
+  -webkit-transform: translate(0, 50%) !important;
+}
+.waitdialog .modal-dialog {
+  transform: translate(0, 75%) !important;
+  -ms-transform: translate(0, 75%) !important; /* IE 9 */
+  -webkit-transform: translate(0, 75%) !important; /* Safari and Chrome */
+  min-width: 365px;
+}
+.waitdialog .modal-dialog .modal-header h4 { 
+	margin-bottom: 10px;
+	font-family: "Open Sans",sans-serif;
+	/*font-weight: 300 !important;*/
+	font-weight: normal;
+}
+
+.bootbox {
+	z-index: 10051 !important;
+	font-size: 11px;
+	font-weight: normal;
+}
+.bootbox > .modal-dialog {
+    transform: translate(0, 15%) !important;
+    -ms-transform: translate(0, 15%) !important;
+    -webkit-transform: translate(0, 15%) !important;
+}
+.bootbox h4, .bootbox input {
+	font-weight: normal;
+}
+.bootbox-alert .modal-dialog, .bootbox-confirm .modal-dialog, .bootbox-prompt .modal-dialog {
+    max-width: 350px;
+    transform: translate(0, 95%) !important;
+    -ms-transform: translate(0, 95%) !important;
+    -webkit-transform: translate(0, 95%) !important;
+	font-family: Open Sans;
+	font-size: 11px
+}
+
+.bootbox-prompt input {
+	font-size: 12px
+}
+
+.bootbox .btn {
+    font-size: 11px;
+    padding: 5.5px 14.5px;
+}
+
+.TF_upload_progress_dialog .modal-dialog {
+	width: 500px;
+    transform: translate(0, 175%) !important;
+    -ms-transform: translate(0, 175%) !important;
+    -webkit-transform: translate(0, 175%) !important;
+}

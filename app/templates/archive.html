@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="portlet box blue shadow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-search"></i>TinyFinder
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="reload TF_reload"></a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <input placeholder="{{ s('text_search-file') }}" autofocus="on" type="text" id="TF_filetitle" class="form-control" />
+                    <div class="tc-wrapper TF_searchresults"></div>
+                </div>
+                <div class="form-actions" style="padding: 19px 10px">
+                    <div class="input-group" style="border: 1px dotted #0087f7;">
+                        <div class="TF_drag_here archive" area="archive">{{ s('text_' ~ type ~ '-drag-drop') }}</div>
+                        <input name="upload" class="TF_uploadingfile d_none" type="file" multiple />
+                        <span class="input-group-btn">
+                            <a class="btn default tooltips TF_options_but" title="{{ s('button_options') }}"><i class="fa fa-cogs"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:0px">
+        <div class="portlet box purple shadow">
+            <div class="portlet-title">
+                <div class="caption" id="previewlegend">
+                    <i class="fa fa-file-o"></i> <span style="text-transform:uppercase;font-size:14px"></span>
+                </div>
+                <div class="tools">
+                    <i class="fa fa-info-circle cpointer TF_about tooltips" title="{{ s('text_about') }}" data-placement="right"></i>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <table style="width:350px;height:279px;">
+                        <tr><td id="TF_fm_preview_container" valign="middle" align="center"></td></tr>
+                    </table>
+                </div>
+                <div class="form-actions right">
+                    <button type="button" title="{{ s('Thumb-3') }}" class="btn btn-default TF_fm_selectbut thumb mr3 tooltips dnone" folder="thumb3"><i class="fa fa-picture-o"></i></button><button type="button" title="{{ s('Thumb-2') }}" class="btn btn-default TF_fm_selectbut thumb mr3 tooltips dnone" folder="thumb2"><i class="fa fa-picture-o"></i></button><button type="button" title="{{ s('Thumb-1') }}" class="btn btn-default TF_fm_selectbut thumb mr3 tooltips dnone" folder="thumb1"><i class="fa fa-picture-o"></i></button><button type="button" class="btn green TF_fm_selectbut original mr3"><i class="fa fa fa-check-square-o"></i> {{ s('button_select') }}</button><button type="button" class="btn btn-danger" onclick="nit.hideallmodals();">{{ s('button_cancel') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

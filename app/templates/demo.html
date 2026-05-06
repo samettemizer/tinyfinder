@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TinyFinder</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ app_url }}assets/tinyfinder.min.css">
+    <style>
+        body { padding: 32px; background: #f7f8fa; }
+        .demo-card { max-width: 840px; margin: 0 auto; background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+        .form-group { margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container py-2">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><i class="fa fa-search"></i>TINYFINDER</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="https://github.com/samettemizer/tinyfinder"><i class="fa fa-github"></i> github</a></li>
+        <!--        <li><a href="/">Help</a></li>-->
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h3 class="liveExample">TinyFinder on CKEditor</h3>
+        <textarea name="text" rows="8" cols="60" class="ck-example"></textarea>
+      </div>
+      <div class="col-md-5">
+        <h3 class="liveExample">TinyFinder on Form</h3>
+        <form class="form-horizontal TF_dialog" method="post">
+          <div class="form-body">
+            <div class="alert alert-warning" role="alert">
+              <i class="fa fa-info-circle"></i> Use a jQuery selector for usage as form element.
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Image Input</label>
+              <div class="col-md-9">
+                <input type="text" name="image_basename" id="image-field" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">File Input</label>
+              <div class="col-md-9">
+                <input type="text" name="file_basename" id="file-field" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Image Edit</label>
+              <div class="col-md-9">
+                <input type="text" name="image_avatar" id="avatar-field" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="fluid">
+            <div class="col-md-offset-2 col-md-9">
+              <button type="button" class="btn btn-primary submitbut" data-loading-text="<i class='fa fa-check-square-o'></i> Please wait...">
+                <i class="fa fa-check-square-o"></i> Submit Form
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <footer>
+    <p>need a fully-customized solution? visit <a href="https://linkedin.com/in/stemizer" target="_blank">here</a> to contact</p>
+  </footer>
+</div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{{ app_url }}assets/3rdparty/ckeditor/ckeditor.js"></script>
+
+    <script src="{{ app_url }}app/script"></script>
+    <script>
+        $(function() {
+            $('#image-field').tinyfinder({ 
+                type: 'img',
+                buttons: { archive: true, download: false, cancel: false } 
+            });
+            $('#file-field').tinyfinder({ 
+                type: 'file',
+                buttons: { archive: true, download: false, cancel: false } 
+            });
+            $("#avatar-field").tinyfinder({
+                type: 'img_edit',
+                create_thumb: false,
+                img_edit_params: {
+                  width: 140,
+                  height: 150
+                }
+            });
+
+            CKEDITOR.replace('text', {
+              height: 300,
+              width: '99%',
+              language: 'en'
+            });
+
+            $('.submitbut').on('click', function () {
+              bootbox.dialog({
+                  title: 'Sample',
+                  message: `Img basename: ${$('input:hidden[name="image_basename"]').val()}<br>File basename: ${$('input:hidden[name="file_basename"]').val()}<br>Img2 basename: ${$('input:hidden[name="image_avatar"]').val()}`,
+                  buttons: {
+                    ok: {label: nit.str("button_close"), className: "btn-danger"}
+                  }
+                })
+            });
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <base href="{{ url_app }}" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/3rdparty/jcrop/css/jquery.Jcrop.css" type="text/css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="assets/3rdparty/jcrop/js/jquery.Jcrop.min.js"></script>
+        <style type="text/css">
+            .croppingdiv {
+                max-height: 325px!important;max-width: 1024px!important;margin-bottom:2px;
+                {% if d[0] > 1024 %}overflow-x:scroll;{% endif %}
+                {% if d[1] > 325 %}overflow-y:scroll;{% endif %}
+            }
+            input { border: none; width: 30px }
+        </style>
+        <script language="Javascript">
+            $(document).ready(function(){
+                $('#cropbox').Jcrop({
+                    aspectRatio: {{ aspect_ratio }},
+                    onChange: updateCoords,
+                    onSelect: updateCoords{% if smartupload and set_select %},
+                    setSelect: [ {{ set_select[0] }}, {{ set_select[1] }}, {{ set_select[2] }}, {{ set_select[3] }} ]{% endif %}
+                });
+            });
+            function updateCoords(c) {
+                $('#x').val(c.x);
+                $('#y').val(c.y);
+                $('#w,#cropwidth').val(parseInt(c.w));
+                $('#h,#cropheight').val(parseInt(c.h));
+            };
+            function cropformsubmit()
+            {
+                if (!parseInt($('#w').val())) {
+                    window.parent.bootbox.alert(window.parent.nit.str("alert_select-to-crop"));
+                    return false;
+                }
+                else if (parseInt($('#w').val()) < 16 || parseInt($('#h').val()) < 16) {
+                    window.parent.bootbox.alert(window.parent.nit.str("alert_min-dimensions")+": 16x16");
+                    return false;
+                }
+                var submitbut = $(".cropbut");
+                $.ajax({type:"post",data: $("#cropform").serialize(),
+                    url:"file/manager/crop?id={{ id }}",
+                    beforeSend: function() {
+                        submitbut.button("loading");
+                    },
+                    success: function(resp)
+                    {
+                        submitbut.button("reset");
+                        if (!$.trim(resp) || resp.code==-1) {
+                            window.parent.bootbox.alert(window.parent.nit.str('alert_srv-not-responding'), function() {
+                                window.location.href = location;
+                            });
+                        }
+                        else
+                        {
+                            if (!{{ smartupload_js }})
+                            {
+                                window.parent.$("li[fileid='{{ id }}']").data({
+                                    size : resp.size,
+                                    width : $('#w').val(),
+                                    height : $('#h').val()
+                                });
+                                window.parent.$.TF_preview("{{ basename }}","{{ name }}",{{ id }});
+                            }
+                            else
+                            {
+                                var d = new Date();
+                                window.parent.$('.{{ tid }} img').attr('src', window.parent.$('.{{ tid }} img').attr('src')+'?x='+d.getTime() );
+                            }
+                            $(".close_cropping").click();
+                        }
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body style="font-family: tahoma;font-size: 11px;">
+        <div class="croppingdiv"><img src="{{ url_uploads }}img/{{ basename }}?rnd={{ rand }}" id="cropbox" /></div>
+        <div style="margin-bottom:3px">
+            {{ s('text_width') }}: <input readonly type="text" value="{{ d[0] }}" id="cropwidth" />
+            {{ s('text_height') }}: <input readonly type="text" value="{{ d[1] }}" id="cropheight" />
+        </div>
+        <form id="cropform" action="" method="post" style="float:none;clear:both">
+            <input type="hidden" id="x" name="x" />
+            <input type="hidden" id="y" name="y" />
+            <input type="hidden" id="w" name="w" />
+            <input type="hidden" id="h" name="h" />
+        </form>
+        <div class="modal-footer">
+            <button class="btn btn-primary cropbut" data-loading-text="{{ s('text_processing') }}" onclick="cropformsubmit();" type="button">{{ s('text_crop-img') }}</button>
+            <button class="btn btn-danger close_cropping" onclick="window.parent.$('.TF_cropbox').modal('hide');" type="button">{{ s('button_close') }}</button>
+        </div>
+    </body>
+</html>

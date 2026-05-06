@@ -1,0 +1,12 @@
+<li type="{type}" fileid="{id}" data-name="{name}" data-basename="{basename}" data-size="{size}" data-width="{width}" data-height="{height}" data-hasthumb="{hasthumb}" data-isprivate="{isprivate}" class="tooltips" title="<i>{{ s('text_uploader') }}: {uploader}<br>{{ s('text_date') }}: {timestamp}</i>">
+    <span class="filetitle">{display_name}</span>
+    <span class="tc-item-operations transicons">
+        <i class="fa fa-link fileLink"></i>
+        <i title="{{ s('text_rename') }}" class="fa fa-edit rename"></i>
+        <a href="{{ url_app }}file/download?basename={basename}"><i title="{{ s('text_download') }}" class="fa fa-download downbut d_none"></i></a>
+        <i title="{{ s('text_addtozip') }}" class="fa fa-file-archive-o compress d_none"></i>
+        <i title="{{ s('text_resize') }}" class="fa fa-cog resizeimg d_none"></i>
+        <i title="{{ s('text_crop-img') }}" class="fa fa-crop crop d_none"></i>
+        <i title="Delete" class="fa fa-trash-o delete"></i>
+    </span>
+</li>

@@ -1,0 +1,22 @@
+{
+  "name": "tinyfinder-assets-build",
+  "version": "1.6.0-rc.2",
+  "private": true,
+  "description": "Build pipeline for TinyFinder CSS and JavaScript assets.",
+  "scripts": {
+    "build": "gulp build",
+    "build:css": "gulp css",
+    "build:js": "gulp js",
+    "watch": "gulp watch",
+    "clean": "gulp clean"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "gulp": "^5.0.1",
+    "gulp-cli": "^3.1.0",
+    "terser": "^5.46.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

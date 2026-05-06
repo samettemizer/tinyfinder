@@ -1,0 +1,4 @@
+# make writable this directory
+*
+!.gitignore
+!thumb*
