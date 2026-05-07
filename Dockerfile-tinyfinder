@@ -4,12 +4,22 @@ ARG UID=1000
 ARG GID=1000
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    HOME=/tmp
 
 WORKDIR /app
 
-RUN groupadd -g ${GID} appuser \
-    && useradd -m -u ${UID} -g ${GID} appuser
+RUN set -eux; \
+    if [ "${UID}" = "0" ] || [ "${GID}" = "0" ]; then \
+        echo "UID/GID must not superuser. build by a normal user"; \
+        exit 1; \
+    fi; \
+    if ! getent group "${GID}" > /dev/null; then \
+        groupadd -g "${GID}" appgroup; \
+    fi; \
+    if ! getent passwd "${UID}" > /dev/null; then \
+        useradd -m -u "${UID}" -g "${GID}" -s /usr/sbin/nologin appuser; \
+    fi
 
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
@@ -22,9 +32,9 @@ RUN mkdir -p \
         /app/uploads/img/thumb1 \
         /app/uploads/img/thumb2 \
         /app/uploads/img/thumb3 \
-    && chown -R appuser:appuser /app
+    && chown -R ${UID}:${GID} /app
 
-USER appuser
+USER ${UID}:${GID}
 
 EXPOSE 8000
 
