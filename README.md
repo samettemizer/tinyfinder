@@ -10,7 +10,11 @@ Backend: FastAPI + Uvicorn
 ## Sample environment
 
 ```bash
-docker build -t tinyfinder -f Dockerfile-tinyfinder .
+docker build \
+  --build-arg UID=$(id -u) \
+  --build-arg GID=$(id -g) \
+  -t tinyfinder \
+  -f Dockerfile-tinyfinder .
 ```
 
 ## Run
