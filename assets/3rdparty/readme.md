@@ -1,0 +1,2 @@
+- ./ckeditor version used here is 4.5.4 but this version isn't a strict requirement
+- using a different version of CKEditor-4x, sure exist tinyfilefinder & tinyimgfinder in the plugins directory and enable them in config.js
