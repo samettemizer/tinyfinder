@@ -3,7 +3,7 @@
 Multimedia, document upload-search tool integrated with WYSIWYG editor.<br>
 Manage easily all of files or use it for any form element.
 
-Backend: FastAPI + Uvicorn
+backend: FastAPI + Uvicorn
 
 ---
 
@@ -13,14 +13,22 @@ Backend: FastAPI + Uvicorn
 docker build \
   --build-arg UID=$(id -u) \
   --build-arg GID=$(id -g) \
-  -t tinyfinder \
+  -t tinyfinder-silinecek \
   -f Dockerfile-tinyfinder .
 ```
 
 ## Run
 
 ```bash
-docker run -d --name tinyfinder-staging -p 8889:8000 -v "$PWD":/app tinyfinder:latest
+docker run -d --name tinyfinder-ct -p 8887:8000 -v "$PWD":/app tinyfinder-silinecek:latest
+```
+
+## frontend assets
+
+build assets:
+
+```bash
+npm i && npm run build
 ```
 
 ## That's all.
@@ -55,22 +63,6 @@ uploaded files:
 ./uploads/img/thumb1
 ./uploads/img/thumb2
 ./uploads/img/thumb3
-```
-
----
-
-## frontend assets
-
-to rebuild assets:
-
-```bash
-npm i && npm run build
-```
-
-to watch files during development:
-
-```bash
-npm run watch
 ```
 
 ---

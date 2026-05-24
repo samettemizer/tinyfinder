@@ -76,23 +76,22 @@ def format_timestamp(raw: str | None) -> str:
 
 
 def html_safe(value: Any) -> str:
-    # tpl replacement öncesi spec karakterlerden kaçış
     import html
 
     return html.escape("" if value is None else str(value), quote=True)
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def demo(request: Request) -> str:
     return render_template("demo.html", app_url=app_url(request))
 
 
-@app.get("/health")
+@app.get("/health", include_in_schema=False)
 async def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.get("/app/script")
+@app.get("/app/script", include_in_schema=False)
 async def app_script(request: Request) -> Response:
     localize = json.dumps(messages.front, ensure_ascii=False)
     allowed = json.dumps(list(config.TF_ALLOWED_FILES))
@@ -109,19 +108,13 @@ async def app_script(request: Request) -> Response:
     )
     return Response(output, media_type="application/javascript")
 
-
-@app.get("/app/script/help")
-async def app_script_help() -> RedirectResponse:
-    return RedirectResponse("https://tinyfinder.stemizer.net/documentation/#installing")
-
-
-@app.get("/file/manager", response_class=HTMLResponse)
-@app.get("/file/manager/", response_class=HTMLResponse)
+@app.get("/file/manager", response_class=HTMLResponse, include_in_schema=False)
+@app.get("/file/manager/", response_class=HTMLResponse, include_in_schema=False)
 async def manager_archive(request: Request, type: str = Query("img")) -> str:
     return render_template("archive.html", type=type, url_app=app_url(request))
 
 
-@app.get("/file/manager/basic", response_class=HTMLResponse)
+@app.get("/file/manager/basic", response_class=HTMLResponse, include_in_schema=False)
 async def manager_basic(type: str = Query("img")) -> str:
     return render_template("basic.html", type=type)
 
@@ -150,8 +143,7 @@ async def manager_filter(request: Request, type: str = Query("img")) -> JSONResp
             "display_name": html_safe(("* " if boolish(isprivate) else "") + name),
         }
         data.append(item)
-    tpl = render_template("item.html", url_app=app_url(request))
-    return JSONResponse({"data": data, "tpl": tpl})
+    return JSONResponse({"data": data})
 
 
 @app.post("/file/manager/name")
@@ -211,12 +203,12 @@ async def manager_zip(basename: str = Query(""), is_delete: int = Query(1)) -> J
     return JSONResponse(zip_single_file(basename, boolish(is_delete)))
 
 
-@app.get("/file/manager/check4update")
+@app.get("/file/manager/check4update", include_in_schema=False)
 async def manager_check_update() -> JSONResponse:
     return JSONResponse({"release": 0})
 
 
-@app.get("/file/manager/crop", response_class=HTMLResponse)
+@app.get("/file/manager/crop", response_class=HTMLResponse, include_in_schema=False)
 async def manager_crop_get(
     request: Request,
     id: int = Query(...),
@@ -303,7 +295,7 @@ async def manager_crop_post(id: int = Query(...), x: int = Form(...), y: int = F
     return JSONResponse(set_file_details(basename, w, h, id))
 
 
-@app.post("/file/upload/")
+@app.post("/file/upload/", include_in_schema=False)
 @app.post("/file/upload")
 async def file_upload(
     request: Request,
@@ -374,7 +366,7 @@ async def file_upload(
     return JSONResponse({"msg": response_msg})
 
 
-@app.post("/file/upload/remote")
+@app.post("/file/upload/remote", include_in_schema=False)
 async def file_upload_remote(request: Request, type: str = Query("img")) -> JSONResponse:
     form = await request.form()
     raw_options = str(form.get("upload_options", ""))

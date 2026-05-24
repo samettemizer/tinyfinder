@@ -12,7 +12,8 @@ if (!$().tinycomplete)
 			itemclass      : 'tc-item',
 			hiddenobj      : 'tc-hidden',
 			itemoperations : 'tc-item-operations',
-			callback  : null
+			callback  : null,
+			template  : null
 		};
 		var options = $.extend({}, defaults, vars);
 		function TC(obj)
@@ -113,13 +114,17 @@ if (!$().tinycomplete)
 									var html = '';
 									if (response.data)
 									{
-										html = '<ul class="tc-container shadow">';
-										$.each(response.data, function(i,row) {
-											html += response.tpl.replace(/{([^{} ]+)}/g, function(match, contents) {
-												return row[contents];
+										var tpl = options.template || response.tpl;
+										if (tpl)
+										{
+											html = '<ul class="tc-container shadow">';
+											$.each(response.data, function(i,row) {
+												html += tpl.replace(/{([^{} ]+)}/g, function(match, contents) {
+													return row[contents];
+												});
 											});
-										});
-										html += '</ul>';
+											html += '</ul>';
+										}
 									}
 									response = html;
 								}
