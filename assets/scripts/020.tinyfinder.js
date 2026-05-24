@@ -527,6 +527,18 @@ $.extend({
 							minlen : 0,
 							type : "list",
 							requesturl : options.url.serverside.main+"filter?type="+options.type,
+							template : '<li type="{type}" fileid="{id}" data-name="{name}" data-basename="{basename}" data-size="{size}" data-width="{width}" data-height="{height}" data-hasthumb="{hasthumb}" data-isprivate="{isprivate}" class="tooltips" title="<i>'+nit.str('text_uploader')+': {uploader}<br>'+nit.str('text_date')+': {timestamp}</i>">'
+								+  '<span class="filetitle">{display_name}</span>'
+								+  '<span class="tc-item-operations transicons">'
+								+  '<i class="fa fa-link fileLink"></i>'
+								+  '<i title="'+nit.str('text_rename')+'" class="fa fa-edit rename"></i>'
+								+  '<a href="'+options.url.serverside.download+'?basename={basename}"><i title="'+nit.str('text_download')+'" class="fa fa-download downbut d_none"></i></a>'
+								+  '<i title="'+nit.str('text_addtozip')+'" class="fa fa-file-archive-o compress d_none"></i>'
+								+  '<i title="'+nit.str('text_resize')+'" class="fa fa-cog resizeimg d_none"></i>'
+								+  '<i title="'+nit.str('text_crop-img')+'" class="fa fa-crop crop d_none"></i>'
+								+  '<i title="Delete" class="fa fa-trash-o delete"></i>'
+								+  '</span>'
+								+  '</li>',
 							callback : function()
 							{
 								$(".TF_searchresults .tc-item[type='img']").find(".crop,.resizeimg").removeClass("d_none");
