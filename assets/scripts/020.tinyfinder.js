@@ -14,7 +14,7 @@ $.extend({
 					main: nit.app_url+'file/manager/',
 					get_filename: nit.app_url+'file/manager/name',
 					upload : nit.app_url+'file/upload/',
-					download : nit.app_url+'file/download/',
+					download : nit.app_url+'file/download',
 					check4update : nit.app_url+'file/manager/check4update?package=none'
 				}
 			},
