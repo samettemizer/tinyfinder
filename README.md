@@ -13,14 +13,14 @@ backend: FastAPI + Uvicorn
 docker build \
   --build-arg UID=$(id -u) \
   --build-arg GID=$(id -g) \
-  -t tinyfinder-silinecek \
+  -t tinyfinder-staging \
   -f Dockerfile-tinyfinder .
 ```
 
 ## Run
 
 ```bash
-docker run -d --name tinyfinder-ct -p 8887:8000 -v "$PWD":/app tinyfinder-silinecek:latest
+docker run -d --name tinyfinder-ct -p 8889:8000 -v "$PWD":/app tinyfinder-staging:latest
 ```
 
 ## frontend assets
