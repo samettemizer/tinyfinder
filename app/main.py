@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import mimetypes
+import logging
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -32,7 +33,12 @@ from .file_service import (
 )
 from .messages import messages
 
+
+class IgnoreHealthcheckFilter(logging.Filter):
+    def filter(self, record):
+        return "/health" not in record.getMessage()
 app = FastAPI(title="TinyFinder FastAPI", version="1.6-RC2-python")
+logging.getLogger("uvicorn.access").addFilter(IgnoreHealthcheckFilter())
 
 config.UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
 (config.UPLOADS_DIR / "img" / "thumb1").mkdir(parents=True, exist_ok=True)
