@@ -77,7 +77,7 @@ $.extend({
 				var el = {}, size, width, height
 				,ext = basename.split('.').pop().toLowerCase()
 				,isimg = (ext == "gif" || ext == "jpg" || ext == "png")
-				,ismedia = (ext == "swf" || ext == "mp3" || ext == "mp4");
+				,ismedia = (ext == "webm" || ext == "mp3" || ext == "mp4");
 
 				if (isimg) el = new Image;
 				el.src = options.url.uploadDir+options.type+"/"+basename;
@@ -147,7 +147,7 @@ $.extend({
 				{
 					$("#previewlegend span").html(nit.str('text_file-not-found'));
 				}
-				else if (isimg || ext == "swf")
+				else if (isimg)
 				{
 					width = $("li[fileid="+id+"]").data("width");
 					height = $("li[fileid="+id+"]").data("height");
@@ -162,7 +162,7 @@ $.extend({
 					'png' : 'fa-image',
 					'jpg' : 'fa-image',
 					'gif' : 'fa-image',
-					'swf' : 'fa-image',
+					'webm' : 'fa-file-movie-o',
 					'rar' : 'fa-file-archive-o',
 					'zip' : 'fa-file-archive-o',
 					'xls' : 'fa-file-excel-o',
@@ -193,7 +193,7 @@ $.extend({
 						.val(name).next().val(basename);
 				
 						setTimeout(function() {
-							if (isimg || ext == "swf") {
+							if (isimg) {
 								obj.popover({
 									content : showfile(options.url.uploadDir+options.type+"/"+basename,((width>250)?250:width),null,'uploadedimg'),
 									html:true
@@ -257,11 +257,6 @@ $.extend({
 									}
 									RTE.insertElement(img);
 								}
-								else if (ext=="swf")
-								{
-									html = showfile(options.url.uploadDir+"file/"+basename, width, height);
-									RTE.insertHtml(html);
-								}
 								else if (ext=="mp3")
 								{
 									var html = '<audio controls>'+
@@ -271,7 +266,7 @@ $.extend({
 									var fakeElement = RTE.createFakeElement( realElement, 'cke_audio', 'audio', false );
 									RTE.insertElement(fakeElement);
 								}
-								else if (ext=="mp4")
+								else if (ext=="mp4" || ext=="webm")
 								{
 									$.TF_autocomplete.deactivate();
 									$('#TF_filetitle').attr('disabled','disabled');
@@ -1224,7 +1219,7 @@ $.extend({
 			.next().val(data.basename);
 	
 			setTimeout(function(){
-				if (type=='img' || ext=='swf')
+				if (type=='img')
 				{
 					data.obj.popover({
 						content : showfile(options.url.uploadDir+type+"/"+data.basename, ((data.width>250)?250:data.width), null, 'uploadedimg'),
