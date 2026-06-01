@@ -13,7 +13,7 @@ TF_ALLOWED_FILES = tuple(
     ext.strip().lower()
     for ext in os.getenv(
         "TF_ALLOWED_FILES",
-        "gz,zip,rar,mp3,mp4,txt,pdf,doc,docx,xls,xlsx,ppt,pps,pptx,psd",
+        "gz,zip,rar,mp3,mp4,webm,txt,pdf,doc,docx,xls,xlsx,ppt,pps,pptx,psd",
     ).split(",")
     if ext.strip()
 )

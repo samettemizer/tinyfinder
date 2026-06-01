@@ -357,7 +357,7 @@ async def file_upload(
                 uploaded.name = zipped["name"]
                 uploaded.row_id = zipped["id"]
 
-    if mode in {"uploadbox", "archive"}:
+    if mode is None or mode in {"uploadbox", "archive"}:
         data = {
             "file": {"upload": {"name": upload.filename if upload else ""}},
             "tinyfinder": {
@@ -381,7 +381,12 @@ async def file_upload(
             "aspect_ratio": aspect_ratio,
             "callback": callback,
         }
+
+        # this response? :D :D <<from the rookie days..>>
         script = f"<script language=\"javascript\">window.parent.$.TF_smartuploadResponse({json.dumps(data)});</script>"
+        # have not more time this refactoring..
+        # gift these songs for you: /watch?v=1lu45uqPatA
+        #                           /watch?v=wB6z-1Z9VuM
         return HTMLResponse(script)
 
     return JSONResponse({"msg": response_msg})

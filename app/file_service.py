@@ -257,6 +257,71 @@ def assert_image_content(path: Path) -> bool:
         return False
 
 
+def assert_file_content(path: Path, ext: str) -> bool:
+    FILE_SIGNATURES = {
+        "pdf": b"%PDF",
+        "zip": b"PK\x03\x04",
+        "gz": b"\x1f\x8b",
+        "rar": b"Rar!",
+        "psd": b"8BPS",
+        "docx": b"PK\x03\x04",  # Office Open XML (ZIP-based)
+        "xlsx": b"PK\x03\x04",  # Excel 2007+
+        "pptx": b"PK\x03\x04",  # PowerPoint 2007+
+    }
+
+    # OLE2 (old Office formats)
+    OLE2_SIGNATURE = b"\xd0\xcf\x11\xe0"
+
+    try:
+        with open(path, "rb") as f:
+            header = f.read(512)  # İlk 512 byte oku
+
+        if not header:
+            return False
+
+        ext_lower = ext.lower()
+
+        if ext_lower in FILE_SIGNATURES:
+            return header.startswith(FILE_SIGNATURES[ext_lower])
+
+        # DOC, XLS, PPS, PPT (old OLE2 formats)
+        if ext_lower in ("doc", "xls", "pps", "ppt"):
+            return header.startswith(OLE2_SIGNATURE)
+
+        # MP3 (sync frame or ID3 tag)
+        if ext_lower == "mp3":
+            return header[:3] == b"ID3" or header[:2] in (b"\xFF\xFB", b"\xFF\xFA")
+
+        # MP4 (ftyp signature offset 4)
+        if ext_lower == "mp4":
+            if len(header) >= 8:
+                return header[4:8] in (b"ftyp", b"mdat", b"wide")
+            return False
+
+        # WebM
+        if ext_lower == "webm":
+            # EBML signature (Matroska/WebM)
+            return header[:4] == b"\x1a\x45\xdf\xa3"
+
+        # TXT
+        if ext_lower == "txt":
+            try:
+                header.decode("utf-8", errors="strict")
+                return True
+            except UnicodeDecodeError:
+                # Latin-1 or other
+                try:
+                    header.decode("latin-1", errors="strict")
+                    return True
+                except UnicodeDecodeError:
+                    return False
+
+        return True  # ufo
+
+    except Exception:
+        return False
+
+
 async def store_upload(upload: UploadFile, file_type: str, upload_options: dict[str, Any]) -> StoredFile | str:
     filename = clean_filename(upload.filename or "file")
     content = await upload.read()
@@ -273,6 +338,10 @@ async def store_upload(upload: UploadFile, file_type: str, upload_options: dict[
     if file_type == "img" and not assert_image_content(target):
         target.unlink(missing_ok=True)
         return messages.str("alert_img-not-allowed")
+
+    if file_type == "file" and not assert_file_content(target, ext):
+        target.unlink(missing_ok=True)
+        return messages.str("alert_file-not-allowed") % filename
 
     create_thumb = boolish(upload_options.get("create_thumb", True))
     private_file = boolish(upload_options.get("private_file", False))
