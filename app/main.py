@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import json
 import mimetypes
 import logging
@@ -10,6 +11,7 @@ from typing import Any
 from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from . import config, db
@@ -37,7 +39,20 @@ from .messages import messages
 class IgnoreHealthcheckFilter(logging.Filter):
     def filter(self, record):
         return "/health" not in record.getMessage()
-app = FastAPI(title="TinyFinder FastAPI", version="1.6-RC2-python")
+app = FastAPI(title="TinyFinder FastAPI", version="1.6.0")
+
+ENV = os.getenv("APP_ENV", "staging")
+raw = os.getenv("ALLOWED_ORIGINS")
+origins = [o.strip() for o in raw.split(",") if o.strip()]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"], # ["*"]
+    allow_headers=["Accept", "Content-Type", "Accept-Language", "Content-Language"], # [*]
+)
+
 logging.getLogger("uvicorn.access").addFilter(IgnoreHealthcheckFilter())
 
 config.UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
