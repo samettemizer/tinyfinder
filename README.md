@@ -1,13 +1,17 @@
-## TinyFinder v1.6.0
+## TinyFinder &lt;legacy&gt;
 
 Multimedia, document upload-search tool integrated with WYSIWYG editor.<br>
 Manage easily all of files or use it for any form element.
 
-backend: FastAPI
+`Endpoints ➜ FastAPI`[☍](https://tinyfinder.stemizer.net/docs)<br>
+
+### See also
+`Filament version`: [☍](https://filamentphp.com/plugins/samet-temizer-tinyfinder)<br>
+`Vue.js version` :  [☍](https://github.com/samettemizer/vue_tinyfinder)
 
 ---
 
-## Build env image
+### Build env image
 
 ```bash
 docker build \
@@ -23,13 +27,11 @@ docker build \
 cp .env.sample .env
 ```
 
-## Run
+### Run
 
 ```bash
 docker run -d --name tinyfinder -p 8889:8000 -v "$PWD":/app --env-file .env tinyfinder-staging:latest
 ```
-
-## frontend assets
 
 build assets:
 
@@ -47,7 +49,7 @@ http://0.0.0.0:8889
 
 ---
 
-## settings, directories
+### settings, directories
 
 config file:
 
