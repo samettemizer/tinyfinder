@@ -1,4 +1,4 @@
-## TinyFinder v1.6-RC2
+## TinyFinder v1.6.0
 
 Multimedia, document upload-search tool integrated with WYSIWYG editor.<br>
 Manage easily all of files or use it for any form element.
@@ -7,7 +7,7 @@ backend: FastAPI + Uvicorn
 
 ---
 
-## Sample environment
+## Build env image
 
 ```bash
 docker build \
@@ -17,10 +17,16 @@ docker build \
   -f Dockerfile-tinyfinder .
 ```
 
+### Copy sample env file
+
+```bash
+cp .env.sample .env
+```
+
 ## Run
 
 ```bash
-docker run -d --name tinyfinder-ct -p 8889:8000 -v "$PWD":/app tinyfinder-staging:latest
+docker run -d --name tinyfinder -p 8889:8000 -v "$PWD":/app --env-file .env tinyfinder-staging:latest
 ```
 
 ## frontend assets
@@ -64,12 +70,3 @@ uploaded files:
 ./uploads/img/thumb2
 ./uploads/img/thumb3
 ```
-
----
-
-### url note:
-
-generates the application-url from `request.base_url` in sample environment.
-
-if you run the app behind a reverse proxy, inside a subfolder, or behind a custom domain, you can define environment variable as TF_URL_APP explicitly.
-
