@@ -3,7 +3,7 @@
 Multimedia, document upload-search tool integrated with WYSIWYG editor.<br>
 Manage easily all of files or use it for any form element.
 
-backend: FastAPI + Uvicorn
+backend: FastAPI
 
 ---
 
