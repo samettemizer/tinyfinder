@@ -1,4 +1,4 @@
-## TinyFinder &lt;legacy&gt;
+## TinyFinder - legacy
 
 Multimedia, document upload-search tool integrated with WYSIWYG editor.<br>
 Manage easily all of files or use it for any form element.
@@ -6,8 +6,8 @@ Manage easily all of files or use it for any form element.
 `Endpoints ➜ FastAPI`[☍](https://tinyfinder.stemizer.net/docs)<br>
 
 ### See also
-`Filament version`: [☍](https://filamentphp.com/plugins/samet-temizer-tinyfinder)<br>
-`Vue.js version` :  [☍](https://github.com/samettemizer/vue_tinyfinder)
+[Filament](https://github.com/samettemizer/filament_tinyfinder) version: [☍](https://filamentphp.com/plugins/samet-temizer-tinyfinder)<br>
+[Vue.js](https://github.com/samettemizer/vue_tinyfinder) version :  [☍](https://tinyfinder-vue.stemizer.net)
 
 ---
 

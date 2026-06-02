@@ -250,10 +250,10 @@ var nesti = {
 			{
 				html ='<img alt="" class="'+((ext!="png")?"bg_defaultloading ":"")+((classname)?classname:"")+'" src="'+url+((!nocache)?"?rnd="+randomnumber(9999):"")+'" width="'+ width +'" height="'+ height +'">';
 			}
-			else if (ext=="mp4")
+			else if (ext=="webm" || ext=="mp4")
 			{
 				html = '<video class="'+((classname)?classname:"")+'" controls width="'+(width||defaults.width)+'" height="'+(height||defaults.height)+'">'+
-					'<source src="'+url+'" type="video/mp4">'+
+					'<source src="'+url+'" type="video/'+ext+'">'+
 				  '</video>';
 			}
 			else if (ext=="mp3")

@@ -112,8 +112,8 @@ async def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.get("/app/script", include_in_schema=False)
-async def app_script(request: Request) -> Response:
+@app.get("/app/settings", include_in_schema=False)
+async def app_settings(request: Request) -> Response:
     localize = json.dumps(messages.front, ensure_ascii=False)
     allowed = json.dumps(list(config.TF_ALLOWED_FILES))
     base = app_url(request)
@@ -125,7 +125,6 @@ async def app_script(request: Request) -> Response:
         f"max_file_size:{config.TF_MAX_FILE_SIZE},"
         f"max_img_size:{config.TF_MAX_IMG_SIZE}"
         "};"
-        f"document.write('<script src=\"{base}assets/tinyfinder.min.js\" type=\"text/javascript\"><\\/script>');"
     )
     return Response(output, media_type="application/javascript")
 

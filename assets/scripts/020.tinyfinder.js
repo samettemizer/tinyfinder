@@ -56,7 +56,7 @@ $.extend({
 			del_zipped_files : true,
 			//
 			
-			common_exts : ['gz','zip','rar','txt','pdf','doc','docx','xls','xlsx','ppt','pps','pptx','psd','mp3','mp4']
+			common_exts : ['gz','zip','rar','txt','pdf','doc','docx','xls','xlsx','ppt','pps','pptx','psd','mp3','mp4','webm']
 		};
 	},
 	
@@ -111,7 +111,7 @@ $.extend({
 						$("#TF_fm_preview_container img").wrap('<a title="'+nit.str('text_download')+'" href="'+options.url.serverside.download+'?basename='+basename+'"></a>');
 					}
 						
-					if (ext == 'mp4')
+					if (ext == 'mp4' || ext == 'webm')
 					{
 						$("#TF_fm_preview_container video").bind("loadedmetadata", function () {
 							width = this.videoWidth;
@@ -162,7 +162,6 @@ $.extend({
 					'png' : 'fa-image',
 					'jpg' : 'fa-image',
 					'gif' : 'fa-image',
-					'webm' : 'fa-file-movie-o',
 					'rar' : 'fa-file-archive-o',
 					'zip' : 'fa-file-archive-o',
 					'xls' : 'fa-file-excel-o',
@@ -174,7 +173,8 @@ $.extend({
 					'ppt' : 'fa-file-powerpoint-o',
 					'pptx' : 'fa-file-powerpoint-o',
 					'mp3' : 'fa-file-audio-o',
-					'mp4' : 'fa-file-movie-o'
+					'mp4' : 'fa-file-movie-o',
+					'webm' : 'fa-file-movie-o'
 				};
 				
 				$("#previewlegend i").show()
@@ -350,7 +350,7 @@ $.extend({
 															video_obj.setAttribute('muted','');
 														}
 														
-														video_obj.setHtml('<source src="'+options.url.uploadDir+"file/"+basename+'" type="video/mp4">');
+														video_obj.setHtml('<source src="'+options.url.uploadDir+"file/"+basename+'" type="video/'+ext+'">');
 														var fakeElement = RTE.createFakeElement( video_obj, 'cke_video', 'video', false );
 														RTE.insertElement(fakeElement);
 														
@@ -398,7 +398,7 @@ $.extend({
 							break;
 						}
 						
-						if (ext!='mp4' && (options.type!='img' || options.rte.hideAfterImgSelect))
+						if (ext!='mp4' && ext!='webm' && (options.type!='img' || options.rte.hideAfterImgSelect))
 						{
 							nit.hideallmodals();
 						}
